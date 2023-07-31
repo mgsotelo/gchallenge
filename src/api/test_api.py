@@ -13,9 +13,9 @@ def create_csv_file(data):
 def test_upload_csv_valid_data():
     # Test with valid data for 'jobs'
     data = [
-        ["job_id", "job_title", "min_salary", "max_salary"],
-        ["1", "Engineer", "50000", "80000"],
-        ["2", "Manager", "60000", "100000"],
+        ["id", "job"],
+        ["1", "Engineer"],
+        ["2", "Manager"],
     ]
     file = create_csv_file(data)
     response = client.post("/uploadcsv/jobs", files={"file": ("test.csv", file)})
@@ -24,9 +24,9 @@ def test_upload_csv_valid_data():
 
     # Test with valid data for 'departments'
     data = [
-        ["department_id", "department_name", "location"],
-        ["1", "Engineering", "New York"],
-        ["2", "Finance", "London"],
+        ["id", "department"],
+        ["1", "Engineering"],
+        ["2", "Finance"],
     ]
     file = create_csv_file(data)
     response = client.post("/uploadcsv/departments", files={"file": ("test.csv", file)})
@@ -35,9 +35,9 @@ def test_upload_csv_valid_data():
 
     # Test with valid data for 'employees'
     data = [
-        ["employee_id", "first_name", "last_name", "job_id", "department_id"],
-        ["1", "John", "Doe", "1", "1"],
-        ["2", "Jane", "Smith", "2", "2"],
+        ["employee_id", "name", "datetime", "department_id", "job_id"],
+        ["1", "John Test Doe", "2021-07-27T16:02:08Z", "1", "1"],
+        ["2", "John Test Smith", "2021-07-27T16:02:08Z", "2", "2"],
     ]
     file = create_csv_file(data)
     response = client.post("/uploadcsv/employees", files={"file": ("test.csv", file)})
@@ -58,14 +58,14 @@ def test_upload_csv_invalid_table_name():
 def test_upload_csv_data_type_mismatch():
     # Test with data type mismatch for 'jobs'
     data = [
-        ["job_id", "job_title", "min_salary", "max_salary"],
-        ["1", "Engineer", "50000", "80000"],
-        ["2", "Manager", "60000", "Invalid"],
+        ["id", "job"],
+        ["1", "Engineer"],
+        ["Invalid", "Manager"],
     ]
     file = create_csv_file(data)
     response = client.post("/uploadcsv/jobs", files={"file": ("test.csv", file)})
     assert response.status_code == 422
-    assert "Data type mismatch for column 'max_salary'" in response.json()["detail"]
+    assert "Data type mismatch for column 'id'" in response.json()["detail"]
 
 if __name__ == "__main__":
     pytest.main(["test_app.py"])
