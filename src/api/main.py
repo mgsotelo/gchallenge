@@ -2,7 +2,7 @@ import logging
 from fastapi import FastAPI, UploadFile, File, HTTPException, Depends
 from pandas import DataFrame
 from sqlalchemy import create_engine, inspect
-from .config import settings
+from src.api.config import settings
 
 app = FastAPI()
 

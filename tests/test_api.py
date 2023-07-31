@@ -1,5 +1,4 @@
-from .main import app
-
+from src.api.main import app
 import io
 import pytest
 from fastapi.testclient import TestClient
