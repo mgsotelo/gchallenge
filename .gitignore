@@ -1,7 +1,2 @@
-# python related
 venv/
 **/__pycache__
-.pytest_cache/
-
-# visual studio code
-.vscode/
