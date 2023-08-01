@@ -9,7 +9,7 @@ usage() {
 }
 
 # Dockerfile path (replace with your Dockerfile path)
-DOCKERFILE="Dockerfile"
+DOCKERFILE="app.Dockerfile"
 
 # Docker image name (replace with your desired image name)
 IMAGE_NAME="myuser/myimage"

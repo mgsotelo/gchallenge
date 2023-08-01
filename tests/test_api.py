@@ -34,7 +34,7 @@ def test_upload_csv_valid_data():
 
     # Test with valid data for 'employees'
     data = [
-        ["employee_id", "name", "datetime", "department_id", "job_id"],
+        ["id", "name", "datetime", "department_id", "job_id"],
         ["1", "John Test Doe", "2021-07-27T16:02:08Z", "1", "1"],
         ["2", "John Test Smith", "2021-07-27T16:02:08Z", "2", "2"],
     ]
