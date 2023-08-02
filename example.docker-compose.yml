@@ -1,0 +1,41 @@
+version: '3.8'
+services:
+  api:
+    image: mgsotelo/gchallenge_api
+    build:
+      context: .
+      dockerfile: gchallenge_api.Dockerfile
+    restart: always
+    environment:
+      - DB_USER=api
+      - DB_PASS=mysql
+      - DB_HOST=password
+      - DB_PORT=3306
+    ports:
+      - '8888:8888'
+    depends_on:
+      - mysql
+  mysql:
+    image: mgsotelo/gchallenge_db
+    build:
+      context: .
+      dockerfile: gchallenge_db.Dockerfile
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+    restart: always
+    ports:
+      - '3306:3306'
+    volumes:
+      - './docker/mysql:/var/lib/mysql'
+  metabase:
+    image: mgsotelo/gchallenge_mb
+    build:
+      context: .
+      dockerfile: gchallenge_mb.Dockerfile
+    ports:
+      - '3000:3000'
+    volumes:
+      - './docker/metabase:/metabase.db'
+    depends_on:
+      - mysql
+    

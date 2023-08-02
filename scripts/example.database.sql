@@ -1,18 +1,18 @@
 -- Drop databases if they exist
 DROP DATABASE IF EXISTS api;
-DROP DATABASE IF EXISTS metabase;
+-- DROP DATABASE IF EXISTS metabase;
 
 -- Create databases
 CREATE DATABASE api;
-CREATE DATABASE metabase;
+-- CREATE DATABASE metabase;
 
 -- Create users
 CREATE USER 'api'@'%' IDENTIFIED WITH mysql_native_password BY 'password';
-CREATE USER 'metabase'@'%' IDENTIFIED WITH mysql_native_password BY 'password';
+-- CREATE USER 'metabase'@'%' IDENTIFIED WITH mysql_native_password BY 'password';
 
 -- Grant privileges
 GRANT ALL PRIVILEGES ON api.* TO 'api'@'%';
-GRANT ALL PRIVILEGES ON metabase.* TO 'metabase'@'%';
+-- GRANT ALL PRIVILEGES ON metabase.* TO 'metabase'@'%';
 
 -- Flush privileges
 FLUSH PRIVILEGES;
