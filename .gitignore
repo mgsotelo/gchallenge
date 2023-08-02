@@ -5,3 +5,10 @@ venv/
 
 # visual studio code
 .vscode/
+
+# my custom scripts
+build_and_push.sh
+docker-compose.yml
+
+# docker
+docker/
