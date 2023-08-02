@@ -10,17 +10,15 @@ fi
 json_file=".secrets.json"
 
 # Arguments
-db_user="$1"
-db_pass="$2"
-db_host="$3"
-db_port="$4"
+DB_USER=$1
+DB_PASS=$2
+DB_HOST=$3
+DB_PORT=$4
 
-# Update the JSON file using AWK
-awk -v user="$db_user" -v pass="$db_pass" -v host="$db_host" -v port="$db_port" '
-    /"DB_USER":/ {gsub(/"[^"]*"/, "\""user"\"")}
-    /"DB_PASS":/ {gsub(/"[^"]*"/, "\""pass"\"")}
-    /"DB_HOST":/ {gsub(/"[^"]*"/, "\""host"\"")}
-    /"DB_PORT":/ {gsub(/"[^"]*"/, "\""port"\"")}
-    1' "$json_file" > tmp.json && mv tmp.json "$json_file"
+# Use sed with regular expressions to modify the JSON file
+sed -i "s/\"DB_USER\": \"[^\"]*\"/\"DB_USER\": \"$DB_USER\"/g" $json_file
+sed -i "s/\"DB_PASS\": \"[^\"]*\"/\"DB_PASS\": \"$DB_PASS\"/g" $json_file
+sed -i "s/\"DB_HOST\": \"[^\"]*\"/\"DB_HOST\": \"$DB_HOST\"/g" $json_file
+sed -i "s/\"DB_PORT\": \"[^\"]*\"/\"DB_PORT\": \"$DB_PORT\"/g" $json_file
 
-echo "JSON file updated successfully."
+echo "JSON file modified successfully."
