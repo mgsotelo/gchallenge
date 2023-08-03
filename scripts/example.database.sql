@@ -22,7 +22,7 @@ USE api;
 
 -- Drop tables if they exist in the api database
 DROP TABLE IF EXISTS `api`.`jobs`;
-DROP TABLE IF EXISTS `api`.`department`;
+DROP TABLE IF EXISTS `api`.`departments`;
 DROP TABLE IF EXISTS `api`.`employees`;
 
 -- Create the jobs table in the api database
@@ -32,7 +32,7 @@ CREATE TABLE `api`.`jobs` (
 );
 
 -- Create the department table in the api database
-CREATE TABLE `api`.`department` (
+CREATE TABLE `api`.`departments` (
   id INT AUTO_INCREMENT PRIMARY KEY,
   department VARCHAR(255) NOT NULL
 );
@@ -40,10 +40,10 @@ CREATE TABLE `api`.`department` (
 -- Create the employees table in the api database
 CREATE TABLE `api`.`employees` (
   id INT AUTO_INCREMENT PRIMARY KEY,
-  name VARCHAR(255) NOT NULL,
-  datetime DATETIME NOT NULL,
-  department_id INT NOT NULL,
-  job_id INT NOT NULL,
-  FOREIGN KEY (department_id) REFERENCES `api`.`department` (id),
+  name VARCHAR(255),
+  datetime DATETIME,
+  department_id INT,
+  job_id INT,
+  FOREIGN KEY (department_id) REFERENCES `api`.`departments` (id),
   FOREIGN KEY (job_id) REFERENCES `api`.`jobs` (id)
 );
