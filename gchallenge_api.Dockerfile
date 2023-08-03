@@ -25,4 +25,4 @@ RUN chmod +x app_configuration.sh
 EXPOSE 8888
 
 # Run the Python application
-ENTRYPOINT ./app_configuration.sh $DB_USER $DB_PASS $DB_HOST $DB_PORT && uvicorn main:app --port 8888 --host 0.0.0.0 --reload
+ENTRYPOINT ./app_configuration.sh $DB_USER $DB_PASS $DB_HOST $DB_PORT && python main.py
