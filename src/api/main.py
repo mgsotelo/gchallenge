@@ -28,8 +28,11 @@ async def process_csv_data(file_path, table_name, contents):
     with open(file_path, 'r') as csvfile:
         csvreader = csv.reader(csvfile)
         for row in csvreader:
+            index = row.index('') if '' in row else -1
+            if index != -1:
+                continue
             if table_name == "employees":
-                row[2] = str(row[2]).replace('T',' ').replace('Z','')
+                row[2] = str(row[2]).replace('T',' ').replace('Z','') 
             if data_batch == []:
                 data_batch.append(headers)
             data_batch.append(row)
