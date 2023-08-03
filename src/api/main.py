@@ -6,7 +6,6 @@ from fastapi import FastAPI, UploadFile, File
 from fastapi.responses import PlainTextResponse
 import csv
 
-
 app = FastAPI()
 
 # Función para procesar CSV y hacer inserciones en la base de datos
